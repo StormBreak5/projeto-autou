@@ -1,0 +1,20 @@
+Assunto: Problema urgente no sistema de pagamentos
+
+Prezados,
+
+Estou enfrentando um problema crítico no sistema de pagamentos da nossa empresa. Desde ontem pela manhã, não conseguimos processar nenhuma transação e isso está impactando diretamente nossas vendas.
+
+O erro que aparece é: "Falha na conexão com o gateway de pagamento - Código 500"
+
+Já tentamos:
+- Reiniciar o servidor
+- Verificar as configurações de rede
+- Contatar o suporte do gateway
+
+Preciso de ajuda urgente para resolver esta questão, pois estamos perdendo vendas a cada minuto que passa.
+
+Aguardo retorno imediato.
+
+Atenciosamente,
+João Silva
+Gerente de TI
