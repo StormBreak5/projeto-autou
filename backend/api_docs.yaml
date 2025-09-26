@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: AutoU Email Classifier API
+  description: API para classificação inteligente de emails usando IA
+  version: 1.0.0
+  contact:
+    name: AutoU Team
+    email: dev@autou.com
+
+servers:
+  - url: http://localhost:5000
+    description: Servidor de desenvolvimento
+  - url: https://your-api-domain.com
+    description: Servidor de produção
+
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Verifica se a API está funcionando
+      responses:
+        '200':
+          description: API funcionando normalmente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  message:
+                    type: string
+                    example: AutoU Email Classifier API is running
+
+  /classify:
+    post:
+      summary: Classificar Email
+      description: Classifica um email como Produtivo ou Improdutivo e gera resposta automática
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Texto do email para classificar
+                  example: "Olá, estou com problema no sistema. Podem me ajudar?"
+              required:
+                - text
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Arquivo de email (.txt ou .pdf)
+      responses:
+        '200':
+          description: Email classificado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  original_text:
+                    type: string
+                    description: Texto original do email
+                  category:
+                    type: string
+                    enum: [Produtivo, Improdutivo]
+                    description: Categoria do email
+                  suggested_response:
+                    type: string
+                    description: Resposta automática sugerida
+                  confidence:
+                    type: number
+                    format: float
+                    minimum: 0
+                    maximum: 1
+                    description: Confiança da classificação
+                example:
+                  original_text: "Olá, estou com problema no sistema..."
+                  category: "Produtivo"
+                  suggested_response: "Obrigado por entrar em contato..."
+                  confidence: 0.85
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Texto do email é obrigatório"
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Erro interno do servidor"
+
+  /classify/batch:
+    post:
+      summary: Classificar Múltiplos Emails
+      description: Classifica múltiplos emails em uma única requisição
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emails:
+                  type: array
+                  items:
+                    type: string
+                  description: Lista de emails para classificar
+                  example: 
+                    - "Preciso de suporte técnico"
+                    - "Obrigado pela ajuda"
+                    - "Qual o status do pedido?"
+              required:
+                - emails
+      responses:
+        '200':
+          description: Emails classificados com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        index:
+                          type: integer
+                          description: Índice do email na lista
+                        category:
+                          type: string
+                          enum: [Produtivo, Improdutivo]
+                          description: Categoria do email
+                        suggested_response:
+                          type: string
+                          description: Resposta automática sugerida
+                        confidence:
+                          type: number
+                          format: float
+                          description: Confiança da classificação
+                        error:
+                          type: string
+                          description: Erro específico do email (se houver)
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro interno do servidor
+
+components:
+  schemas:
+    EmailClassification:
+      type: object
+      properties:
+        category:
+          type: string
+          enum: [Produtivo, Improdutivo]
+        suggested_response:
+          type: string
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Mensagem de erro

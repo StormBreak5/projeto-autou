@@ -33,7 +33,6 @@ export class AppComponent {
       this.selectedFile = file;
       this.emailForm.patchValue({ inputMethod: 'file' });
       
-      // Read file content for preview
       const reader = new FileReader();
       reader.onload = (e) => {
         const content = e.target?.result as string;

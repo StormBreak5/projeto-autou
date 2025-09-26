@@ -33,15 +33,12 @@ export class EmailClassificationService {
       formData.append('text', request.text);
     }
 
-    // For now, return a simulated response
-    // Replace this with actual HTTP call when backend is ready
     return this.simulateClassification(request.text || '');
   }
 
   private simulateClassification(text: string): Observable<ClassificationResult> {
     const startTime = Date.now();
     
-    // Simple keyword-based classification for simulation
     const productiveKeywords = [
       'suporte', 'problema', 'erro', 'ajuda', 'dúvida', 'status', 
       'atualização', 'urgente', 'sistema', 'falha', 'bug', 'solicitação',
@@ -78,7 +75,6 @@ export class EmailClassificationService {
       processing_time: (Date.now() - startTime) / 1000
     };
 
-    // Simulate network delay
     return of(result).pipe(delay(1500 + Math.random() * 1000));
   }
 
@@ -104,11 +100,8 @@ export class EmailClassificationService {
     }
   }
 
-  // Method for actual API call (to be used when backend is ready)
   private callActualAPI(formData: FormData): Observable<ClassificationResult> {
     const headers = new HttpHeaders();
-    // Don't set Content-Type header, let browser set it with boundary for FormData
-    
     return this.http.post<ClassificationResult>(`${this.apiUrl}/classify`, formData, { headers });
   }
 }

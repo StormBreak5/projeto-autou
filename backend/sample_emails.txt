@@ -1,0 +1,75 @@
+EMAIL 1 - PRODUTIVO:
+Assunto: Problema urgente no sistema de login
+
+Olá equipe de suporte,
+
+Estou enfrentando um problema crítico no sistema. Não consigo fazer login na plataforma há mais de 2 horas. Já tentei redefinir a senha, mas o problema persiste.
+
+Preciso acessar urgentemente para finalizar um relatório importante que deve ser entregue hoje.
+
+Podem me ajudar o mais rápido possível?
+
+Obrigado,
+João Silva
+
+---
+
+EMAIL 2 - IMPRODUTIVO:
+Assunto: Agradecimento pela excelente apresentação
+
+Oi pessoal!
+
+Queria parabenizar toda a equipe pela apresentação incrível de ontem. Foi realmente inspirador ver o progresso do projeto.
+
+Muito obrigada por todo o trabalho duro e dedicação!
+
+Abraços,
+Maria Santos
+
+---
+
+EMAIL 3 - PRODUTIVO:
+Assunto: Solicitação de relatório mensal
+
+Bom dia,
+
+Gostaria de solicitar o relatório mensal de vendas referente ao mês de dezembro. Preciso dessas informações para a reunião de planejamento da próxima semana.
+
+Quando estará disponível?
+
+Atenciosamente,
+Carlos Oliveira
+
+---
+
+EMAIL 4 - IMPRODUTIVO:
+Assunto: Feliz Ano Novo!
+
+Pessoal,
+
+Desejo a todos um Ano Novo repleto de sucessos, saúde e felicidade!
+
+Que 2024 seja um ano de grandes conquistas para nossa equipe!
+
+Abraços carinhosos,
+Ana Costa
+
+---
+
+EMAIL 5 - PRODUTIVO:
+Assunto: Bug no módulo de relatórios
+
+Equipe de desenvolvimento,
+
+Identifiquei um bug no módulo de relatórios. Quando tento gerar o relatório de vendas por região, o sistema retorna erro 500.
+
+Passos para reproduzir:
+1. Acessar módulo de relatórios
+2. Selecionar "Vendas por Região"
+3. Escolher período: Janeiro 2024
+4. Clicar em "Gerar"
+
+O erro aparece imediatamente. Podem verificar?
+
+Obrigado,
+Pedro Lima

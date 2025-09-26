@@ -1,4 +1,3 @@
-// App container
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -6,7 +5,6 @@
   background-color: #fafafa;
 }
 
-// Toolbar styles
 .app-toolbar {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   
@@ -24,7 +22,6 @@
   }
 }
 
-// Subtitle
 .subtitle-container {
   background: linear-gradient(135deg, #673ab7 0%, #9c27b0 100%);
   color: white;
@@ -38,7 +35,6 @@
   }
 }
 
-// Main content
 .main-content {
   flex: 1;
   padding: 24px 0;
@@ -50,7 +46,6 @@
   padding: 0 16px;
 }
 
-// Input card
 .input-card {
   margin-bottom: 24px;
   
@@ -66,7 +61,6 @@
   }
 }
 
-// Form styles
 .email-form {
   .input-method-section {
     margin-bottom: 24px;
@@ -169,7 +163,6 @@
   }
 }
 
-// Results section
 .results-section {
   .error-card {
     border-left: 4px solid #f44336;
@@ -322,7 +315,6 @@
   }
 }
 
-// Features section
 .features-section {
   margin-top: 32px;
   
@@ -385,7 +377,6 @@
   }
 }
 
-// Footer
 .footer {
   margin-top: auto;
   background-color: white;
@@ -411,7 +402,6 @@
   }
 }
 
-// Responsive design
 @media (max-width: 768px) {
   .container {
     padding: 0 8px;
