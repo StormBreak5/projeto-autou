@@ -1,5 +1,4 @@
 import os
-import openai
 import logging
 import random
 from typing import Dict, List
@@ -9,13 +8,25 @@ logger = logging.getLogger(__name__)
 class ResponseGenerator:
     def __init__(self):
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
+        self.client = None
+        self.use_openai = False
         
         if self.openai_api_key:
-            openai.api_key = self.openai_api_key
-            self.use_openai = True
-            logger.info("Usando OpenAI para geração de respostas")
+            try:
+                import openai
+                if hasattr(openai, 'OpenAI'):
+                    self.client = openai.OpenAI(api_key=self.openai_api_key)
+                else:
+                    openai.api_key = self.openai_api_key
+                    self.client = openai
+                
+                self.use_openai = True
+                logger.info("Usando OpenAI para geração de respostas")
+            except Exception as e:
+                logger.error(f"Erro ao inicializar OpenAI: {str(e)}")
+                logger.info("Fallback para templates de resposta")
+                self.use_openai = False
         else:
-            self.use_openai = False
             logger.info("OpenAI não configurado, usando templates de resposta")
         
         self._load_response_templates()
@@ -34,17 +45,28 @@ class ResponseGenerator:
         try:
             prompt = self._build_response_prompt(email_text, classification)
             
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": self._get_response_system_prompt()},
-                    {"role": "user", "content": prompt}
-                ],
-                max_tokens=200,
-                temperature=0.3
-            )
-            
-            return response.choices[0].message.content.strip()
+            if hasattr(self.client, 'chat') and hasattr(self.client.chat, 'completions'):
+                response = self.client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": self._get_response_system_prompt()},
+                        {"role": "user", "content": prompt}
+                    ],
+                    max_tokens=200,
+                    temperature=0.3
+                )
+                return response.choices[0].message.content.strip()
+            else:
+                response = self.client.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": self._get_response_system_prompt()},
+                        {"role": "user", "content": prompt}
+                    ],
+                    max_tokens=200,
+                    temperature=0.3
+                )
+                return response.choices[0].message.content.strip()
             
         except Exception as e:
             logger.error(f"Erro na geração OpenAI: {str(e)}")

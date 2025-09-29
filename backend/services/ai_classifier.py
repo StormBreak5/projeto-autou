@@ -1,5 +1,4 @@
 import os
-import openai
 import logging
 from typing import Tuple
 import json
@@ -10,13 +9,25 @@ class AIClassifier:
     def __init__(self):
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
         self.last_confidence = 0.0
+        self.client = None
+        self.use_openai = False
         
         if self.openai_api_key:
-            openai.api_key = self.openai_api_key
-            self.use_openai = True
-            logger.info("Usando OpenAI para classificação")
+            try:
+                import openai
+                if hasattr(openai, 'OpenAI'):
+                    self.client = openai.OpenAI(api_key=self.openai_api_key)
+                else:
+                    openai.api_key = self.openai_api_key
+                    self.client = openai
+                
+                self.use_openai = True
+                logger.info("Usando OpenAI para classificação")
+            except Exception as e:
+                logger.error(f"Erro ao inicializar OpenAI: {str(e)}")
+                logger.info("Fallback para classificação baseada em regras")
+                self.use_openai = False
         else:
-            self.use_openai = False
             logger.info("OpenAI não configurado, usando classificação baseada em regras")
     
     def classify(self, text: str) -> str:
@@ -33,17 +44,28 @@ class AIClassifier:
         try:
             prompt = self._build_classification_prompt(text)
             
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": self._get_system_prompt()},
-                    {"role": "user", "content": prompt}
-                ],
-                max_tokens=150,
-                temperature=0.1
-            )
-            
-            result = response.choices[0].message.content.strip()
+            if hasattr(self.client, 'chat') and hasattr(self.client.chat, 'completions'):
+                response = self.client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": self._get_system_prompt()},
+                        {"role": "user", "content": prompt}
+                    ],
+                    max_tokens=150,
+                    temperature=0.1
+                )
+                result = response.choices[0].message.content.strip()
+            else:
+                response = self.client.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": self._get_system_prompt()},
+                        {"role": "user", "content": prompt}
+                    ],
+                    max_tokens=150,
+                    temperature=0.1
+                )
+                result = response.choices[0].message.content.strip()
             
             if "produtivo" in result.lower():
                 classification = "Produtivo"
