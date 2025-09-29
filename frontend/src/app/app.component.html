@@ -41,22 +41,45 @@
               </mat-radio-group>
             </div>
 
-            <mat-divider></mat-divider>
-
             <div class="file-upload-section" *ngIf="emailForm.value.inputMethod === 'file'">
               <input type="file" id="fileInput" accept=".txt,.pdf" (change)="onFileSelected($event)" class="file-input"
                 #fileInput>
 
-              <button mat-raised-button color="accent" type="button" (click)="fileInput.click()"
-                class="file-upload-button">
-                <mat-icon>cloud_upload</mat-icon>
-                {{ selectedFile ? selectedFile.name : 'Selecionar arquivo (.txt, .pdf)' }}
-              </button>
+              <div class="upload-area" [class.has-file]="selectedFile">
+                <button mat-raised-button color="accent" type="button" (click)="fileInput.click()"
+                  class="file-upload-button">
+                  <mat-icon>{{ selectedFile ? 'check_circle' : 'cloud_upload' }}</mat-icon>
+                  {{ selectedFile ? selectedFile.name : 'Selecionar arquivo (.txt, .pdf)' }}
+                </button>
+                
+                <div class="upload-info" *ngIf="!selectedFile">
+                  <p>Arraste um arquivo aqui ou clique para selecionar</p>
+                  <small>Formatos suportados: .txt, .pdf</small>
+                </div>
+              </div>
+
+              <mat-card class="file-preview-card" *ngIf="selectedFile && emailForm.value.emailText">
+                <mat-card-header>
+                  <mat-card-title>
+                    <mat-icon>preview</mat-icon>
+                    Preview: {{ selectedFile.name }}
+                  </mat-card-title>
+                  <button mat-icon-button (click)="removeFile()" matTooltip="Remover arquivo">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="preview-content">
+                    {{ emailForm.value.emailText | slice:0:500 }}
+                    <span *ngIf="emailForm.value.emailText.length > 500">...</span>
+                  </div>
+                </mat-card-content>
+              </mat-card>
             </div>
 
             <div class="text-input-section" *ngIf="emailForm.value.inputMethod === 'text'">
               <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Conteúdo do Email</mat-label>
+                <mat-label style="color: #64748b;">Conteúdo do Email</mat-label>
                 <textarea matInput formControlName="emailText"
                   placeholder="Cole aqui o conteúdo do email que deseja classificar..." rows="8" cdkTextareaAutosize
                   #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="8" cdkAutosizeMaxRows="15">
@@ -71,25 +94,8 @@
               </mat-form-field>
             </div>
 
-            <mat-card class="file-preview-card" *ngIf="selectedFile && emailForm.value.emailText">
-              <mat-card-header>
-                <mat-card-title>
-                  <mat-icon>preview</mat-icon>
-                  Preview do arquivo
-                </mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                <div class="preview-content">
-                  {{ emailForm.value.emailText | slice:0:300 }}
-                  <span *ngIf="emailForm.value.emailText.length > 300">...</span>
-                </div>
-              </mat-card-content>
-            </mat-card>
-
-            <mat-divider></mat-divider>
-
             <div class="form-actions">
-              <button mat-raised-button color="primary" type="submit" [disabled]="emailForm.invalid || isProcessing"
+              <button mat-raised-button color="primary" type="submit" [disabled]="!isFormValid || isProcessing"
                 class="submit-button">
                 <mat-spinner *ngIf="isProcessing" diameter="20" class="button-spinner"></mat-spinner>
                 <mat-icon *ngIf="!isProcessing">psychology</mat-icon>
@@ -146,8 +152,6 @@
                 </mat-progress-bar>
               </div>
             </div>
-
-            <mat-divider></mat-divider>
 
             <div class="suggested-response">
               <h3>
@@ -222,11 +226,10 @@
   </div>
 
   <div class="footer">
-    <mat-divider></mat-divider>
     <div class="footer-content">
       <p>
         <mat-icon class="footer-icon">copyright</mat-icon>
-        2024 AutoU - Desenvolvido para otimizar o atendimento por email
+        2025 - Desenvolvido por Itzac Albertin, como parte do teste no processo seletivo da AutoU.
       </p>
     </div>
   </div>

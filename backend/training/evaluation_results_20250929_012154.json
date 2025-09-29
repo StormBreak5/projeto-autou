@@ -1,0 +1,21 @@
+{
+  "accuracy": 1.0,
+  "correct_predictions": 2,
+  "total_predictions": 2,
+  "detailed_results": [
+    {
+      "email": "Preciso alterar meu endereço cadastrado. Como faço isso?",
+      "expected": "Produtivo",
+      "predicted": "Produtivo",
+      "correct": true,
+      "full_response": "Classificação: Produtivo\nResposta sugerida: Olá! Para alterar seu endereço, basta acessar sua conta no internet banking e atualizar seus dados pessoais. Se preferir, pode também entrar em contato com nossa central de atendimento pelo telefone XXXX-XXXX."
+    },
+    {
+      "email": "Muito obrigado pela ajuda de vocês. Problema resolvido!",
+      "expected": "Improdutivo",
+      "predicted": "Improdutivo",
+      "correct": true,
+      "full_response": "Classificação: Improdutivo\nResposta sugerida: Ficamos felizes em ajudar! Se precisar de algo mais, estamos à disposição."
+    }
+  ]
+}

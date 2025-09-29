@@ -1,0 +1,192 @@
+[
+  {
+    "email": "Prezados, gostaria de solicitar uma atualização sobre o status do meu processo de abertura de conta. O protocolo é #12345. Aguardo retorno.",
+    "category": "Produtivo",
+    "suggested_response": "Olá! Obrigado pelo contato. Verificamos que seu processo #12345 está em análise pela nossa equipe. Você receberá uma atualização em até 2 dias úteis. Qualquer dúvida, estamos à disposição."
+  },
+  {
+    "email": "\"Prezados, venho por meio deste para solicitar um update acerca do andamento do meu processo de abertura de conta. O número de referência é #12345. Fico no aguardo de um retorno.\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos por entrar em contato conosco. Em relação ao seu processo de abertura de conta com o número de referência #12345, informamos que o mesmo encontra-se em fase de análise e está previsto para ser concluído até o final desta semana. \n\nCaso haja alguma necessidade de informações adicionais ou se desejar acompanhar mais de perto o andamento do processo, por favor, não hesite em nos contatar.\n\nAgradecemos pela sua paciência e compreensão.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 0
+  },
+  {
+    "email": "\"Caros responsáveis, gostaria de pedir uma atualização referente ao estado do meu procedimento de abertura de conta. O protocolo atribuído é #12345. Permaneço aguardando por uma resposta.\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos por entrar em contato conosco. Em relação ao seu pedido de abertura de conta com o protocolo #12345, informamos que o procedimento está em andamento e estamos trabalhando para finalizá-lo o mais breve possível. Pedimos desculpas pela demora e agradecemos pela sua paciência.\n\nEstamos comprometidos em fornecer um serviço eficiente e de qualidade. Caso tenha alguma dúvida adicional ou necessite de mais informações, por favor, não hesite em nos contatar.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 0
+  },
+  {
+    "email": "Bom dia, estou com dificuldades para acessar minha conta no sistema. Aparece erro 'usuário não encontrado'. Podem me ajudar?",
+    "category": "Produtivo",
+    "suggested_response": "Bom dia! Lamentamos o inconveniente. Nossa equipe técnica irá verificar seu acesso e entrar em contato em até 24 horas para resolver a questão. Obrigado pela paciência."
+  },
+  {
+    "email": "Preciso de esclarecimentos sobre as taxas cobradas na minha conta corrente. Podem me enviar um detalhamento?",
+    "category": "Produtivo",
+    "suggested_response": "Olá! Claro, vamos providenciar o detalhamento das taxas da sua conta. O documento será enviado para seu email cadastrado em até 1 dia útil. Agradecemos o contato."
+  },
+  {
+    "email": "\"Gostaria de obter mais informações acerca das tarifas que foram debitadas em minha conta corrente. Seria possível me enviarem um detalhamento completo?\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado(a) Cliente,\n\nAgradecemos pelo seu contato. Para fornecer um detalhamento completo das tarifas debitadas em sua conta corrente, solicitamos que nos envie um email para [email do setor de tarifas] com o seu nome completo e número da conta. Assim que recebermos essas informações, nossa equipe irá providenciar o detalhamento solicitado.\n\nEstamos à disposição para ajudar no que for necessário.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 2
+  },
+  {
+    "email": "\"Preciso de esclarecimentos referentes às despesas cobradas em minha conta corrente. Seria viável me fornecerem uma explicação detalhada?\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos por entrar em contato conosco. Compreendemos sua preocupação em relação às despesas cobradas em sua conta corrente. Para fornecer uma explicação detalhada, solicitamos que nos envie os detalhes específicos das cobranças em questão, como datas, valores e descrições das transações. Dessa forma, poderemos analisar minuciosamente e esclarecer todas as dúvidas de forma precisa e transparente.\n\nEstamos à disposição para ajudá-lo(a) no que for necessário. Por favor, não hesite em nos contatar para mais informações.\n\nAtenciosamente,\n\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 2
+  },
+  {
+    "email": "Solicito o cancelamento do meu cartão de crédito número final 1234. Como devo proceder?",
+    "category": "Produtivo",
+    "suggested_response": "Olá! Recebemos sua solicitação de cancelamento. Nossa equipe entrará em contato para confirmar os dados e processar o cancelamento de forma segura. Aguarde nosso retorno em até 48 horas."
+  },
+  {
+    "email": "\"Gostaria de realizar o encerramento do meu cartão de crédito cujos últimos dígitos são 1234. Qual seria o procedimento adequado a ser seguido?\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado(a) Cliente,\n\nAgradecemos por entrar em contato conosco. Para realizar o encerramento do seu cartão de crédito com os últimos dígitos 1234, você pode seguir os seguintes passos:\n\n1. Entre em contato com nossa central de atendimento pelo telefone XXXX-XXXX e solicite o cancelamento do cartão.\n2. Caso prefira, também é possível realizar o encerramento diretamente em uma de nossas agências bancárias. Verifique a agência mais próxima de você em nosso site.\n\nLembramos que após o cancelamento do cartão, é importante destruí-lo de forma segura. Em caso de dúvidas ou necessidade de mais informações, estamos à disposição para ajudá-lo.\n\nAtenciosamente,\n[Seu Nome]\n[Seu Cargo]\n[Banco XYZ]",
+    "is_variation": true,
+    "original_index": 3
+  },
+  {
+    "email": "\"Estou solicitando a finalização do meu cartão de crédito com o número final 1234. Poderia me orientar sobre os passos necessários para isso?\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos por entrar em contato conosco. Para finalizar o seu cartão de crédito com o número final 1234, será necessário que você entre em contato com nossa central de atendimento pelo telefone XXXX-XXXX para solicitar o cancelamento do cartão. Nossos atendentes estarão disponíveis para auxiliá-lo(a) com o procedimento necessário.\n\nCaso tenha mais alguma dúvida ou necessite de mais informações, não hesite em nos contatar.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 3
+  },
+  {
+    "email": "Gostaria de agendar uma reunião para discutir opções de investimento. Qual a disponibilidade da equipe?",
+    "category": "Produtivo",
+    "suggested_response": "Olá! Ficamos felizes com seu interesse em nossos produtos de investimento. Nossa equipe comercial entrará em contato para agendar uma reunião conforme sua disponibilidade. Obrigado!"
+  },
+  {
+    "email": "\"Gostaria de marcar um encontro para explorar oportunidades de investimento. Qual seria o melhor momento para a nossa equipe se reunir?\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos o seu interesse em explorar oportunidades de investimento conosco. Para agendar um encontro produtivo, sugerimos que nossa equipe se reúna na próxima quarta-feira, dia 15 de setembro, às 10h. Caso este horário não seja conveniente para você, por favor, nos informe para que possamos encontrar uma alternativa que atenda às suas necessidades.\n\nFicamos à disposição para auxiliá-lo no que for necessário.\n\nAtenciosamente,\n[Seu Nome]\n[Seu Cargo]\nBanco XYZ",
+    "is_variation": true,
+    "original_index": 4
+  },
+  {
+    "email": "\"Estou interessado em agendar uma reunião para analisar possíveis investimentos. Você poderia informar os horários disponíveis para o time?\"",
+    "category": "Produtivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos o seu interesse em analisar possíveis investimentos conosco. Para agendar uma reunião produtiva, informamos que temos disponibilidade de horários de segunda a sexta-feira, das 9h às 17h. Por favor, nos informe sua preferência de dia e horário para que possamos agendar a reunião de acordo com sua conveniência.\n\nEstamos à disposição para auxiliá-lo no que for necessário.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 4
+  },
+  {
+    "email": "Feliz Natal para toda a equipe! Desejo um 2024 cheio de prosperidade e sucesso!",
+    "category": "Improdutivo",
+    "suggested_response": "Muito obrigado pelas felicitações! Desejamos também um excelente ano novo para você e sua família. Continuamos à disposição para atendê-lo sempre que precisar."
+  },
+  {
+    "email": "\"Boas festas para todos da equipe! Que o ano de 2024 seja repleto de conquistas e realizações para todos nós!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos as suas felicitações e desejamos que o ano de 2024 seja repleto de conquistas e realizações para todos nós. Estamos à disposição para atendê-lo em suas necessidades bancárias. \n\nAtenciosamente,\nEquipe do Banco.",
+    "is_variation": true,
+    "original_index": 5
+  },
+  {
+    "email": "\"Desejo um Natal repleto de alegrias para toda a equipe! Que o próximo ano nos traga muitos êxitos e prosperidade!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos os votos de felicidades e desejamos que o seu Natal seja repleto de alegrias e que o próximo ano seja próspero. Estamos à disposição para atendê-lo no que precisar.\n\nAtenciosamente,\nEquipe do Banco.",
+    "is_variation": true,
+    "original_index": 5
+  },
+  {
+    "email": "Parabéns pelo excelente atendimento que recebi ontem na agência. A funcionária Maria foi muito atenciosa.",
+    "category": "Improdutivo",
+    "suggested_response": "Ficamos muito felizes com seu feedback positivo! Vamos repassar seus elogios para a Maria e toda nossa equipe. Obrigado por escolher nossos serviços!"
+  },
+  {
+    "email": "\"Gostaria de expressar minha satisfação com o atendimento recebido ontem na agência. A colaboradora Beatriz demonstrou grande presteza e profissionalismo.\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos por compartilhar sua experiência positiva em nossa agência. Ficamos felizes em saber que a colaboradora Beatriz pôde atendê-lo com presteza e profissionalismo. Seu feedback é muito importante para nós e será repassado à equipe para reconhecimento e incentivo.\n\nEstamos à disposição para qualquer outra necessidade que possa surgir.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 6
+  },
+  {
+    "email": "\"Quero destacar a qualidade do serviço prestado durante minha visita à agência ontem. A funcionária Laura se mostrou extremamente solícita e competente.\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos por compartilhar sua experiência positiva durante sua visita à nossa agência ontem. Ficamos felizes em saber que a funcionária Laura foi solícita e competente no atendimento prestado. Seu feedback é muito importante para nós e será compartilhado com a equipe para reconhecimento e incentivo.\n\nEstamos à disposição para qualquer outra necessidade que possa surgir.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 6
+  },
+  {
+    "email": "\"Fiquei muito contente com a experiência que tive na agência ontem. O atendimento da colaboradora Renata foi excepcional, mostrando dedicação e eficiência.\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos por compartilhar sua experiência positiva em nossa agência. Ficamos felizes em saber que a colaboradora Renata proporcionou um atendimento excepcional, demonstrando dedicação e eficiência. Se houver algo mais em que possamos auxiliá-lo, por favor, não hesite em entrar em contato.\n\nAtenciosamente,\n[Seu nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 6
+  },
+  {
+    "email": "Obrigado pela resolução rápida do meu problema. Vocês são ótimos!",
+    "category": "Improdutivo",
+    "suggested_response": "Que bom saber que conseguimos ajudar! Seu feedback é muito importante para nós. Continuamos sempre à disposição para atendê-lo. Obrigado!"
+  },
+  {
+    "email": "\"Agradeço pela prontidão na solução da questão que apresentei. Fiquei satisfeito com o atendimento prestado!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos pelo seu feedback positivo em relação ao atendimento prestado. Estamos sempre empenhados em solucionar as questões de forma eficiente e satisfatória para nossos clientes. Caso necessite de mais alguma assistência, não hesite em entrar em contato conosco.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 7
+  },
+  {
+    "email": "\"Fico contente com a eficiência demonstrada ao resolver a questão que relatei. Parabéns pela competência da equipe!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado(a) Cliente,\n\nAgradecemos o seu feedback positivo e elogio à nossa equipe. Estamos comprometidos em fornecer um serviço eficiente e de qualidade. Caso necessite de mais assistência ou tenha outras questões, não hesite em entrar em contato conosco. Agradecemos a confiança em nosso banco.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 7
+  },
+  {
+    "email": "\"Estou grato pela celeridade na resolução do meu problema. Nota máxima para o comprometimento de vocês!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado(a) cliente,\n\nAgradecemos pelo seu feedback positivo e ficamos felizes em saber que conseguimos resolver seu problema de forma ágil. Nosso compromisso é sempre atender às necessidades dos nossos clientes da melhor maneira possível. Estamos à disposição para qualquer outra questão que possa surgir.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 7
+  },
+  {
+    "email": "Boa tarde! Como está o clima aí hoje? Aqui está muito quente!",
+    "category": "Improdutivo",
+    "suggested_response": "Boa tarde! Obrigado pela mensagem. Caso precise de algum serviço bancário, estaremos sempre à disposição para atendê-lo. Tenha um ótimo dia!"
+  },
+  {
+    "email": "\"Olá, espero que esteja aproveitando bem o dia aí do seu lado! Aqui, estamos lidando com altas temperaturas que parecem não dar trégua.\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos por compartilhar um pouco do seu dia conosco. Em relação à sua mensagem sobre as altas temperaturas, lamentamos saber que está enfrentando esse desafio. Caso necessite de alguma assistência bancária ou tenha alguma dúvida sobre nossos serviços, por favor, não hesite em nos contatar. Estamos aqui para ajudar no que for necessário.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 8
+  },
+  {
+    "email": "\"Boa tarde! Como estão as condições climáticas por aí? Aqui, o calor está intenso e não dá trégua.\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos por compartilhar suas observações sobre as condições climáticas. No entanto, estamos à disposição para ajudá-lo com quaisquer questões relacionadas aos nossos serviços bancários. Caso necessite de assistência ou informações sobre sua conta, por favor, não hesite em entrar em contato conosco.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 8
+  },
+  {
+    "email": "Feliz aniversário para a empresa! 50 anos de tradição no mercado financeiro!",
+    "category": "Improdutivo",
+    "suggested_response": "Muito obrigado pelas felicitações! Ficamos honrados em ter clientes como você ao longo dessa jornada. Continuaremos trabalhando para oferecer sempre o melhor atendimento."
+  },
+  {
+    "email": "\"Parabéns pelo aniversário da empresa! São 5 décadas de excelência no setor financeiro!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos pelo reconhecimento e pelas felicitações. Estamos sempre empenhados em oferecer o melhor serviço financeiro para atender às suas necessidades. Caso tenha alguma dúvida ou necessite de assistência bancária, não hesite em nos contatar.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 9
+  },
+  {
+    "email": "\"Celebre conosco o aniversário da empresa! Meio século de tradição no ramo bancário!\"",
+    "category": "Improdutivo",
+    "suggested_response": "Prezado cliente,\n\nAgradecemos por compartilhar conosco essa importante celebração do aniversário da sua empresa. Parabenizamos pelos 50 anos de tradição no ramo bancário. Estamos à disposição para atendê-lo em suas necessidades bancárias e esperamos poder continuar contribuindo para o sucesso de sua empresa.\n\nAtenciosamente,\n[Seu Nome]\nAtendente Bancário",
+    "is_variation": true,
+    "original_index": 9
+  }
+]

@@ -2,6 +2,9 @@ import os
 import logging
 from typing import Tuple
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -11,12 +14,18 @@ class AIClassifier:
         self.last_confidence = 0.0
         self.client = None
         self.use_openai = False
+        self.custom_model = "ft:gpt-3.5-turbo-0125:personal::CKzmULdo"
         
-        if self.openai_api_key:
+        if self.openai_api_key and self.openai_api_key != 'your_openai_api_key_here':
             try:
                 import openai
+                import httpx
+                
                 if hasattr(openai, 'OpenAI'):
-                    self.client = openai.OpenAI(api_key=self.openai_api_key)
+                    self.client = openai.OpenAI(
+                        api_key=self.openai_api_key,
+                        http_client=httpx.Client()
+                    )
                 else:
                     openai.api_key = self.openai_api_key
                     self.client = openai
@@ -46,33 +55,29 @@ class AIClassifier:
             
             if hasattr(self.client, 'chat') and hasattr(self.client.chat, 'completions'):
                 response = self.client.chat.completions.create(
-                    model="gpt-3.5-turbo",
+                    model=self.custom_model,
                     messages=[
                         {"role": "system", "content": self._get_system_prompt()},
                         {"role": "user", "content": prompt}
                     ],
-                    max_tokens=150,
-                    temperature=0.1
+                    max_tokens=200,
+                    temperature=0.0
                 )
                 result = response.choices[0].message.content.strip()
             else:
                 response = self.client.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
+                    model=self.custom_model,
                     messages=[
                         {"role": "system", "content": self._get_system_prompt()},
                         {"role": "user", "content": prompt}
                     ],
-                    max_tokens=150,
-                    temperature=0.1
+                    max_tokens=200,
+                    temperature=0.0
                 )
                 result = response.choices[0].message.content.strip()
             
-            if "produtivo" in result.lower():
-                classification = "Produtivo"
-                self.last_confidence = 0.85
-            else:
-                classification = "Improdutivo"
-                self.last_confidence = 0.85
+            classification, confidence = self._parse_openai_response(result, text)
+            self.last_confidence = confidence
             
             return classification
             
@@ -117,24 +122,159 @@ class AIClassifier:
             return "Improdutivo"
     
     def _build_classification_prompt(self, text: str) -> str:
-        return f"""
-        Classifique o seguinte email como "Produtivo" ou "Improdutivo":
-
-        Email: "{text}"
-
-        Critérios:
-        - Produtivo: Emails que requerem ação ou resposta específica (suporte técnico, dúvidas sobre sistema, solicitações, atualizações de status)
-        - Improdutivo: Emails que não necessitam ação imediata (felicitações, agradecimentos, mensagens sociais)
-
-        Responda apenas com "Produtivo" ou "Improdutivo".
-        """
+        return f"Classifique este email e sugira uma resposta: {text}"
     
     def _get_system_prompt(self) -> str:
-        return """
-        Você é um assistente especializado em classificar emails corporativos.
-        Sua tarefa é determinar se um email é "Produtivo" (requer ação) ou "Improdutivo" (não requer ação imediata).
-        Seja preciso e consistente em suas classificações.
-        """
+        return "Você é um assistente especializado em classificar emails bancários como Produtivo (requer ação) ou Improdutivo (não requer ação) e sugerir respostas apropriadas."
     
+    def _parse_openai_response(self, response_text: str, email_text: str = "") -> Tuple[str, float]:
+        try:
+            import json
+            
+            response_text = response_text.strip()
+            if response_text.startswith('```json'):
+                response_text = response_text.replace('```json', '').replace('```', '').strip()
+            
+            response_data = json.loads(response_text)
+            
+            classificacao = response_data.get('classificacao', '').strip()
+            confianca = float(response_data.get('confianca', 0.8))
+            
+            if 'improdutivo' in classificacao.lower():
+                classification = "Improdutivo"
+            elif 'produtivo' in classificacao.lower():
+                classification = "Produtivo"
+            else:
+                justificativa = response_data.get('justificativa', '').lower()
+                if any(word in justificativa for word in ['produtivo', 'ação', 'resposta', 'suporte']):
+                    classification = "Produtivo"
+                else:
+                    classification = "Improdutivo"
+            
+            confianca = max(0.1, min(1.0, confianca))
+            
+            logger.info(f"OpenAI classificou como: {classification} (confiança: {confianca:.2f})")
+            return classification, confianca
+            
+        except (json.JSONDecodeError, KeyError, ValueError) as e:
+            logger.info(f"Modelo personalizado retornou: {response_text[:100]}...")
+            
+            response_lines = response_text.strip().split('\n')
+            first_line = response_lines[0] if response_lines else response_text
+            
+            if 'classificação:' in first_line.lower():
+                classification_part = first_line.lower().split('classificação:')[1].strip()
+                if 'improdutivo' in classification_part:
+                    classification = "Improdutivo"
+                elif 'produtivo' in classification_part:
+                    classification = "Produtivo"
+                else:
+                    classification = self._fallback_classification(response_text)
+            else:
+                response_lower = response_text.lower()
+                
+                if ('classificação: improdutivo' in response_lower or 
+                    'classificacao: improdutivo' in response_lower or
+                    'email improdutivo' in response_lower or
+                    'improdutivo.' in response_lower):
+                    classification = "Improdutivo"
+                elif ('classificação: produtivo' in response_lower or 
+                      'classificacao: produtivo' in response_lower or
+                      'email produtivo' in response_lower or
+                      'produtivo.' in response_lower):
+                    classification = "Produtivo"
+                else:
+                    classification = self._fallback_classification(response_text)
+            
+            confidence = self._calculate_confidence_for_custom_model(classification, email_text)
+            confidence = max(0.1, min(1.0, confidence))
+            
+            logger.info(f"Modelo personalizado classificou como: {classification} (confiança calculada: {confidence:.2f})")
+            return classification, confidence
+
+    def _fallback_classification(self, response_text: str) -> str:
+        response_lower = response_text.lower()
+        
+        strong_unproductive = [
+            'obrigado', 'agradecemos', 'felizes', 'parabéns', 'reconhecimento',
+            'feedback positivo', 'elogios', 'satisfação', 'gratidão', 'felicitações'
+        ]
+        
+        strong_productive = [
+            'verificar', 'analisar', 'resolver', 'providenciar', 'processar',
+            'encaminhar', 'agendar', 'solicitar', 'atualização', 'protocolo'
+        ]
+        
+        unproductive_phrases = [
+            'ficamos felizes', 'muito obrigado', 'feedback é importante',
+            'continuamos à disposição', 'agradecemos o contato',
+            'como posso ajudar', 'olá!', 'bom dia!', 'boa tarde!'
+        ]
+        
+        productive_phrases = [
+            'vamos verificar', 'nossa equipe', 'entrar em contato',
+            'providenciar', 'em até', 'dias úteis', 'processar',
+            'para resolver', 'vamos analisar'
+        ]
+        
+        unproductive_score = 0
+        productive_score = 0
+        
+        for indicator in strong_unproductive:
+            if indicator in response_lower:
+                unproductive_score += 2
+        
+        for indicator in strong_productive:
+            if indicator in response_lower:
+                productive_score += 2
+                
+        for phrase in unproductive_phrases:
+            if phrase in response_lower:
+                unproductive_score += 3
+                
+        for phrase in productive_phrases:
+            if phrase in response_lower:
+                productive_score += 3
+        
+        if ('como posso ajudar' in response_lower and 
+            len(response_text.split()) <= 8 and
+            not any(word in response_lower for word in ['verificar', 'analisar', 'resolver'])):
+            unproductive_score += 5
+        
+        logger.info(f"Fallback analysis - Produtivo: {productive_score}, Improdutivo: {unproductive_score}")
+        
+        if unproductive_score > productive_score:
+            return "Improdutivo"
+        else:
+            return "Produtivo"
+
+    def _calculate_confidence_for_custom_model(self, classification: str, email_text: str = "") -> float:
+        base_confidence = 0.85
+        email_lower = email_text.lower()
+        
+        clear_indicators = [
+            'obrigado', 'parabéns', 'felicitações',
+            'preciso', 'gostaria', 'solicito', 'problema'
+        ]
+        
+        ambiguous_patterns = [
+            len(email_text.split()) < 3,
+            '?' not in email_text and 'preciso' not in email_lower,
+        ]
+        
+        clarity_bonus = 0.0
+        for indicator in clear_indicators:
+            if indicator in email_lower:
+                clarity_bonus += 0.05
+                break
+        
+        ambiguity_penalty = 0.0
+        for pattern in ambiguous_patterns:
+            if pattern:
+                ambiguity_penalty += 0.08
+        
+        confidence = base_confidence + clarity_bonus - ambiguity_penalty
+        return max(0.70, min(0.95, confidence))
+
     def get_last_confidence(self) -> float:
         return self.last_confidence

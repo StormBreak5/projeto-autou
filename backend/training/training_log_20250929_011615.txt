@@ -1,0 +1,12 @@
+[2025-09-29 01:16:23] ============================================================
+[2025-09-29 01:16:23] INICIANDO PIPELINE COMPLETO DE TREINAMENTO
+[2025-09-29 01:16:23] ============================================================
+[2025-09-29 01:16:23] Verificando pré-requisitos...
+[2025-09-29 01:16:24] ✓ Biblioteca openai encontrada
+[2025-09-29 01:16:24] ✓ Todos os pré-requisitos atendidos
+[2025-09-29 01:16:24] Iniciando aumento de dados...
+[2025-09-29 01:16:24] ERRO no aumento de dados: cannot import name 'OpenAI' from 'openai' (Z:\Project\projeto-autou\backend\venv\Lib\site-packages\openai\__init__.py)
+[2025-09-29 01:16:24] AVISO: Aumento de dados falhou, continuando com dados originais
+[2025-09-29 01:16:24] Iniciando fine-tuning...
+[2025-09-29 01:16:24] ERRO no fine-tuning: cannot import name 'OpenAI' from 'openai' (Z:\Project\projeto-autou\backend\venv\Lib\site-packages\openai\__init__.py)
+[2025-09-29 01:16:24] ERRO: Fine-tuning falhou, não é possível continuar com avaliação

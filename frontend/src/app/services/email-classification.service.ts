@@ -128,9 +128,9 @@ export class EmailClassificationService {
   private mapBackendResponse(response: any): ClassificationResult {
     return {
       category: response.category as 'Produtivo' | 'Improdutivo',
-      confidence: response.confidence || 0.8,
+      confidence: response.confidence !== undefined ? response.confidence : 0.75,
       suggested_response: response.suggested_response || 'Resposta não disponível',
-      processing_time: 1.5
+      processing_time: response.processing_time || 1.5
     };
   }
 }

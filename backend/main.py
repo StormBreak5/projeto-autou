@@ -27,6 +27,9 @@ def health_check():
 
 @app.route('/classify', methods=['POST'])
 def classify_email():
+    import time
+    start_time = time.time()
+    
     try:
         if 'file' in request.files:
             file = request.files['file']
@@ -51,11 +54,14 @@ def classify_email():
         classification = ai_classifier.classify(processed_text)
         suggested_response = response_generator.generate_response(email_text, classification)
 
+        processing_time = round(time.time() - start_time, 3)
+
         response_data = {
             'original_text': email_text,
             'category': classification,
             'suggested_response': suggested_response,
-            'confidence': ai_classifier.get_last_confidence()
+            'confidence': ai_classifier.get_last_confidence(),
+            'processing_time': processing_time
         }
         
         return jsonify(response_data), 200
@@ -81,15 +87,18 @@ def classify_batch():
 
         for i, email_text in enumerate(emails):
             try:
+                item_start_time = time.time()
                 processed_text = email_processor.preprocess_text(email_text)
                 classification = ai_classifier.classify(processed_text)
                 suggested_response = response_generator.generate_response(email_text, classification)
+                item_processing_time = round(time.time() - item_start_time, 3)
                 
                 results.append({
                     'index': i,
                     'category': classification,
                     'suggested_response': suggested_response,
-                    'confidence': ai_classifier.get_last_confidence()
+                    'confidence': ai_classifier.get_last_confidence(),
+                    'processing_time': item_processing_time
                 })
             except Exception as e:
                 results.append({'index': i, 'error': str(e)})

@@ -1,0 +1,6 @@
+[2025-09-29 01:13:21] ============================================================
+[2025-09-29 01:13:21] INICIANDO PIPELINE COMPLETO DE TREINAMENTO
+[2025-09-29 01:13:21] ============================================================
+[2025-09-29 01:13:21] Verificando pré-requisitos...
+[2025-09-29 01:13:21] ERRO: Variável OPENAI_API_KEY não configurada
+[2025-09-29 01:13:21] Pipeline interrompido devido a pré-requisitos não atendidos
