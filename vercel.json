@@ -6,16 +6,12 @@
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist/frontend",
-        "installCommand": "npm install",
         "buildCommand": "npm run build:prod"
       }
     },
     {
       "src": "api/index.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxDuration": 30
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -24,8 +20,12 @@
       "dest": "api/index.py"
     },
     {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg))",
+      "dest": "frontend/dist/frontend/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "dist/frontend/index.html"
+      "dest": "frontend/dist/frontend/index.html"
     }
   ]
 }
