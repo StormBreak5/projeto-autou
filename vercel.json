@@ -27,9 +27,5 @@
       "src": "/(.*)",
       "dest": "frontend/dist/frontend/$1"
     }
-  ],
-  "env": {
-    "OPENAI_API_KEY": "@openai_api_key",
-    "FLASK_ENV": "production"
-  }
+  ]
 }
