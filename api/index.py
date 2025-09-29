@@ -1,6 +1,12 @@
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backend'))
+
+# Torna o diretório do backend visível tanto no ambiente local quanto no empacotado da Vercel
+backend_dir_parent = os.path.join(os.path.dirname(__file__), '..', 'backend')
+backend_dir_local = os.path.join(os.path.dirname(__file__), 'backend')
+for candidate in (backend_dir_parent, backend_dir_local):
+    if os.path.isdir(candidate) and candidate not in sys.path:
+        sys.path.append(candidate)
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS

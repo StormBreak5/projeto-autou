@@ -14,18 +14,13 @@
       "use": "@vercel/python"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/index.py"
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg))",
-      "dest": "frontend/dist/frontend/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/dist/frontend/index.html"
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "backend/**"
     }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/index.py" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
