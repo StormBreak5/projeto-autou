@@ -12,7 +12,10 @@
     },
     {
       "src": "api/index.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 30
+      }
     }
   ],
   "routes": [
@@ -28,10 +31,5 @@
   "env": {
     "OPENAI_API_KEY": "@openai_api_key",
     "FLASK_ENV": "production"
-  },
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 30
-    }
   }
 }
