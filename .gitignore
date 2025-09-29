@@ -77,3 +77,11 @@ logs/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Vercel
+.vercel
+*.vercel.json.bak
+
+# Build outputs
+build/
+out/
