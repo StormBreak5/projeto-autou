@@ -14,7 +14,6 @@ class AIClassifier:
         self.last_confidence = 0.0
         self.client = None
         self.use_openai = False
-        # Evite hardcode de IDs inexistentes em produção; use GPT-4o-mini como fallback leve
         self.custom_model = os.getenv('OPENAI_CUSTOM_MODEL', 'gpt-4o-mini')
         
         if self.openai_api_key and self.openai_api_key != 'your_openai_api_key_here':

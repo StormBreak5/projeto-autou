@@ -4,10 +4,7 @@
   "outputDirectory": "frontend/dist/frontend",
   "functions": {
     "api/index.py": {
-      "includeFiles": [
-        "backend/services/**",
-        "backend/config.py"
-      ]
+      "includeFiles": "backend/**"
     }
   },
   "routes": [
