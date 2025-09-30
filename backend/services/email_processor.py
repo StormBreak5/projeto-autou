@@ -9,15 +9,21 @@ logger = logging.getLogger(__name__)
 
 class EmailProcessor:
     def __init__(self):
+        # Best-effort: ensure NLTK resources if available, but never fail startup on serverless
         self._download_nltk_data()
     
     def _download_nltk_data(self):
         try:
+            # If resources are already present, nothing to do
             nltk.data.find('tokenizers/punkt')
             nltk.data.find('corpora/stopwords')
         except LookupError:
-            nltk.download('punkt', quiet=True)
-            nltk.download('stopwords', quiet=True)
+            # Attempt download, but ignore failures to keep function responsive on Vercel
+            try:
+                nltk.download('punkt', quiet=True)
+                nltk.download('stopwords', quiet=True)
+            except Exception as e:
+                logger.warning(f"Falha ao baixar dados NLTK (ignorado): {str(e)}")
     
     def process_file(self, file) -> str:
         try:
